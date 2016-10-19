@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
  * Created by litao on 2016/10/20.
  */
 @ControllerAdvice
-public class GlobalDefaultExceptionHandler {
+public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)
     public void defaultErrorHandler(HttpServletRequest req, Exception e)  {
