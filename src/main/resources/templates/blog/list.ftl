@@ -100,46 +100,35 @@
                 <!-- 面包屑导航结束 -->
 
                 <div class="row">
+                    <!-- android -->
+                    <div class="col-lg-12">
+                        <div class="panel panel-border panel-inverse">
+                            <div class="panel-body">
+                                <div class="inbox-widget">
 
-                    <#list categoryList as category>
-                        <#if category.url != "index" && category.url != "about" >
-                            <div class="col-lg-4">
-                                <div class="panel panel-border panel-inverse">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">${category.name}</h3>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="inbox-widget">
+                                    <#list articles as article >
+                                        <a href="${action}/${article.id}" target="_blank" class="waves-effect" style="display: block">
+                                            <div class="inbox-item" style="padding: 10px">
+                                                <p class="inbox-item-author"> ${article.name} </p>
+                                                <p class="inbox-item-text"> ${article.summary} ... </p>
+                                                <p class="inbox-item-date"> ${article.createDate} </p>
+                                            </div>
+                                        </a>
+                                    </#list>
 
-                                            <#list articleList as article >
-                                                <#if category.id == article.categoryId >
-                                                    <a href="#" class="waves-effect" style="display: block">
-                                                        <div class="inbox-item" style="padding: 10px">
-                                                            <p class="inbox-item-author"> ${article.name} </p>
-                                                            <p class="inbox-item-text"> ${article.summary} </p>
-                                                            <p class="inbox-item-date">10:15 AM</p>
-                                                        </div>
-                                                    </a>
-                                                </#if>
-                                            </#list>
-
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
-                        </#if>
-
-                    </#list>
-
+                        </div>
+                    </div>
+                    <!-- android结束 -->
                 </div>
-
 
                 <!-- Footer -->
                 <footer class="footer text-right">
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-6">
-                                2016 © Moltran.
+                                © litaono1.cn 2016 | 皖ICP备16001149号-1
                             </div>
                             <div class="col-xs-6">
                                 <ul class="pull-right list-inline m-b-0">
@@ -180,6 +169,5 @@
         <script src="blog/plugins/counterup/jquery.counterup.min.js"></script>
         <!-- sweet alert  -->
         <script src="blog/plugins/sweetalert/dist/sweetalert.min.js"></script>
-
     </body>
 </html>

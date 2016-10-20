@@ -1,19 +1,20 @@
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
-        <link rel="shortcut icon" href="blog/images/favicon_1.ico">
+        <link rel="shortcut icon" href="/blog/blog/images/favicon_1.ico">
         <title>狂魔穴窟</title>
-        <link href="blog/plugins/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
-        <link href="blog/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-        <link href="blog/css/core.css" rel="stylesheet" type="text/css">
-        <link href="blog/css/icons.css" rel="stylesheet" type="text/css">
-        <link href="blog/css/components.css" rel="stylesheet" type="text/css">
-        <link href="blog/css/pages.css" rel="stylesheet" type="text/css">
-        <link href="blog/css/menu.css" rel="stylesheet" type="text/css">
-        <link href="blog/css/responsive.css" rel="stylesheet" type="text/css">
-        <script src="blog/js/modernizr.min.js"></script>
+        <link href="/blog/blog/plugins/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+        <link href="/blog/blog/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="/blog/blog/css/core.css" rel="stylesheet" type="text/css">
+        <link href="/blog/blog/css/icons.css" rel="stylesheet" type="text/css">
+        <link href="/blog/blog/css/components.css" rel="stylesheet" type="text/css">
+        <link href="/blog/blog/css/pages.css" rel="stylesheet" type="text/css">
+        <link href="/blog/blog/css/menu.css" rel="stylesheet" type="text/css">
+        <link href="/blog/blog/css/responsive.css" rel="stylesheet" type="text/css">
+        <script src="/blog/blog/js/modernizr.min.js"></script>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -100,46 +101,52 @@
                 <!-- 面包屑导航结束 -->
 
                 <div class="row">
+                    <!-- android -->
+                    <div class="col-lg-12">
+                        <div class="panel panel-border panel-inverse">
+                            <div class="panel-body">
+                                <div class="inbox-widget">
 
-                    <#list categoryList as category>
-                        <#if category.url != "index" && category.url != "about" >
-                            <div class="col-lg-4">
-                                <div class="panel panel-border panel-inverse">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">${category.name}</h3>
+                                    <div style="text-align: center">
+                                        <h1> ${article.name} </h1>
+                                        <span> ${article.createDate} </span>
+                                        <span> 嗜血狂魔 </span>
                                     </div>
-                                    <div class="panel-body">
-                                        <div class="inbox-widget">
 
-                                            <#list articleList as article >
-                                                <#if category.id == article.categoryId >
-                                                    <a href="#" class="waves-effect" style="display: block">
-                                                        <div class="inbox-item" style="padding: 10px">
-                                                            <p class="inbox-item-author"> ${article.name} </p>
-                                                            <p class="inbox-item-text"> ${article.summary} </p>
-                                                            <p class="inbox-item-date">10:15 AM</p>
-                                                        </div>
-                                                    </a>
-                                                </#if>
-                                            </#list>
+                                    <div style="font-size: 14px;background: #f5f5f5;padding: 5px;border-radius: 3px;box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.1);margin-top: 10px;margin-bottom: 10px;">
+                                        <span>摘要：${article.summary}</span>
+                                    </div>
 
+                                    <div style="font-size: 16px;padding: 5px;">
+                                        ${article.content}
+                                    </div>
+
+                                    <hr>
+
+                                    <div class="row">
+                                        <div class="col-xs-6 waves-effect">
+                                            <a href="#"><< 上一页</a>
+                                        </div>
+                                        <div class="col-xs-6 waves-effect">
+                                            <a href="#" class="pull-right">下一页 >></a>
                                         </div>
                                     </div>
+                                    
+                    
+                                    
                                 </div>
                             </div>
-                        </#if>
-
-                    </#list>
-
+                        </div>
+                    </div>
+                    <!-- android结束 -->
                 </div>
-
 
                 <!-- Footer -->
                 <footer class="footer text-right">
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-6">
-                                2016 © Moltran.
+                                © litaono1.cn 2016 | 皖ICP备16001149号-1
                             </div>
                             <div class="col-xs-6">
                                 <ul class="pull-right list-inline m-b-0">
@@ -161,25 +168,26 @@
 
             </div>
             <!-- end container -->
+
+
         </div>
 
         <!-- jQuery  -->
-        <script src="blog/js/jquery.min.js"></script>
-        <script src="blog/js/bootstrap.min.js"></script>
-        <script src="blog/js/detect.js"></script>
-        <script src="blog/js/fastclick.js"></script>
-        <script src="blog/js/jquery.blockUI.js"></script>
-        <script src="blog/js/waves.js"></script>
-        <script src="blog/js/wow.min.js"></script>
-        <script src="blog/js/jquery.nicescroll.js"></script>
-        <script src="blog/js/jquery.scrollTo.min.js"></script>
+        <script src="/blog/blog/js/jquery.min.js"></script>
+        <script src="/blog/blog/js/bootstrap.min.js"></script>
+        <script src="/blog/blog/js/detect.js"></script>
+        <script src="/blog/blog/js/fastclick.js"></script>
+        <script src="/blog/blog/js/jquery.blockUI.js"></script>
+        <script src="/blog/blog/js/waves.js"></script>
+        <script src="/blog/blog/js/wow.min.js"></script>
+        <script src="/blog/blog/js/jquery.nicescroll.js"></script>
+        <script src="/blog/blog/js/jquery.scrollTo.min.js"></script>
         <!-- App js -->
-        <script src="blog/js/jquery.app.js"></script>
+        <script src="/blog/blog/js/jquery.app.js"></script>
         <!-- counters  -->
-        <script src="blog/plugins/waypoints/lib/jquery.waypoints.js"></script>
-        <script src="blog/plugins/counterup/jquery.counterup.min.js"></script>
+        <script src="/blog/blog/plugins/waypoints/lib/jquery.waypoints.js"></script>
+        <script src="/blog/blog/plugins/counterup/jquery.counterup.min.js"></script>
         <!-- sweet alert  -->
-        <script src="blog/plugins/sweetalert/dist/sweetalert.min.js"></script>
-
+        <script src="/blog/blog/plugins/sweetalert/dist/sweetalert.min.js"></script>
     </body>
 </html>
