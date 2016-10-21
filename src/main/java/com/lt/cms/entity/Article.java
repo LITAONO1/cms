@@ -7,7 +7,7 @@ public class Article {
 
     private int id;
 
-    private int category_id;
+    private int categoryId;
 
     private String name;
 
@@ -17,6 +17,8 @@ public class Article {
 
     private String createDate;
 
+    private String categoryUrl;
+
     public int getId() {
         return id;
     }
@@ -25,12 +27,12 @@ public class Article {
         this.id = id;
     }
 
-    public int getCategory_id() {
-        return category_id;
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory_id(int category_id) {
-        this.category_id = category_id;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getName() {
@@ -63,5 +65,13 @@ public class Article {
 
     public void setCreateDate(String createDate) {
         this.createDate = createDate;
+    }
+
+    public String getCategoryUrl() {
+        return categoryUrl;
+    }
+
+    public void setCategoryUrl(String categoryUrl) {
+        this.categoryUrl = categoryUrl;
     }
 }

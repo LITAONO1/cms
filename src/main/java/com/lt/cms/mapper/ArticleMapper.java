@@ -18,9 +18,11 @@ public interface ArticleMapper {
     Article findArticle(@Param("id") String id);
 
     @Results({
-            @Result(property = "createDate", column = "create_date")
+            @Result(property = "createDate", column = "create_date"),
+            @Result(property = "categoryId", column = "category_id"),
+            @Result(property = "categoryUrl", column = "url")
     })
-    @Select("select a.id, a.name, a.summary, a.create_date from article a left join category c on a.category_id = c.id where c.name = #{name}")
+    @Select("select a.id, a.name, a.summary, a.create_date, a.category_id, c.url from article a left join category c on a.category_id = c.id where c.name = #{name}")
     List<Article> findArticles(@Param("name") String name);
 
 

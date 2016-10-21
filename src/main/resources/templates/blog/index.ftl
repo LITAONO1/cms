@@ -102,7 +102,7 @@
                 <div class="row">
 
                     <#list categoryList as category>
-                        <#if category.url != "index" && category.url != "about" >
+                        <#if category.url != "/blog/index" && category.url != "/blog/about" >
                             <div class="col-lg-4">
                                 <div class="panel panel-border panel-inverse">
                                     <div class="panel-heading">
@@ -113,7 +113,7 @@
 
                                             <#list articleList as article >
                                                 <#if category.id == article.categoryId >
-                                                    <a href="#" class="waves-effect" style="display: block">
+                                                    <a href=" ${article.categoryUrl}/${article.id} " target="_blank" class="waves-effect" style="display: block">
                                                         <div class="inbox-item" style="padding: 10px">
                                                             <p class="inbox-item-author"> ${article.name} </p>
                                                             <p class="inbox-item-text"> ${article.summary} </p>
