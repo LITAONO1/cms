@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
-        <link rel="shortcut icon" href="/blog/blog/images/favicon_1.ico">
+        <link rel="shortcut icon" href="/blog/blog/images/favicon.ico">
         <title>狂魔穴窟</title>
         <link href="/blog/blog/plugins/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
         <link href="/blog/blog/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -32,14 +32,14 @@
 
                     <!-- LOGO -->
                     <div class="topbar-left">
-                        <a href="index.html" class="logo"><i class="md md-terrain"></i> <span>狂魔穴窟</span></a>
+                        <a href="index.html" class="logo" style="margin-top: 0px; line-height: 60px;">  <span style="color: #ec407a">狂魔穴窟</span></a>
                     </div>
                     <!-- End Logo container-->
 
                     <div class="menu-extras">
                         <ul class="nav navbar-nav navbar-right pull-right">
                             <!-- 实际开发中登录和头像二者选择其一 -->
-                            <li> <a href="#" class="waves-effect waves-light">登录</a> </li>
+                            <#--<li> <a href="#" class="waves-effect waves-light">登录</a> </li>-->
                             <!-- <li class="dropdown user-box">
                                 <a href="" class="dropdown-toggle waves-effect waves-light profile " data-toggle="dropdown" aria-expanded="true">
                                     <img src="assets/images/users/avatar-1.jpg" alt="user-img" class="img-circle user-img">
@@ -75,7 +75,7 @@
                     <div id="navigation">
                         <ul class="navigation-menu">
                             <#list categoryList as category>
-                                <#if (category.url == action) >
+                                <#if (category.code == action) >
                                     <li class="active">
                                 <#else>
                                     <li>
@@ -107,33 +107,64 @@
                             <div class="panel-body">
                                 <div class="inbox-widget">
 
-                                    <div style="text-align: center">
-                                        <h1> ${article.name} </h1>
-                                        <span> ${article.createDate} </span>
-                                        <span> 嗜血狂魔 </span>
-                                    </div>
+                                    <#if type == "0">
+                                        <div style="text-align: center">
+                                            <h1> ${article.name} </h1>
+                                            <span> ${article.createDate} </span>
+                                            <span> 嗜血狂魔 </span>
+                                        </div>
 
-                                    <div style="font-size: 14px;background: #f5f5f5;padding: 5px;border-radius: 3px;box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.1);margin-top: 10px;margin-bottom: 10px;">
-                                        <span>摘要：${article.summary}</span>
-                                    </div>
+                                        <div style="font-size: 14px;background: #f5f5f5;padding: 5px;border-radius: 3px;box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.1);margin-top: 10px;margin-bottom: 10px;">
+                                            <span>摘要：${article.summary}</span>
+                                        </div>
 
-                                    <div style="font-size: 16px;padding: 5px;">
+                                        <div style="font-size: 16px;padding: 5px;">
                                         ${article.content}
-                                    </div>
-
-                                    <hr>
-
-                                    <div class="row">
-                                        <div class="col-xs-6 waves-effect">
-                                            <a href="#"><< 上一页</a>
                                         </div>
-                                        <div class="col-xs-6 waves-effect">
-                                            <a href="#" class="pull-right">下一页 >></a>
+
+                                        <hr>
+
+                                        <div class="row">
+                                            <ul class="pager">
+                                                <#if article.preId != 0 && article.nextId != 0>
+                                                    <li class="previous">
+                                                        <a href="${action}/${article.preId}">
+                                                            <span style="color: #ec407a"><i class="fa fa-long-arrow-left"></i> 上一页</span>
+                                                        </a>
+                                                    </li>
+                                                </#if>
+                                                <#if article.preId != 0 && article.nextId == 0>
+                                                    <li class="previous">
+                                                        <a href="${action}/${article.preId}" >
+                                                            <span style="color: #ec407a"><i class="fa fa-long-arrow-left"></i> 上一页</span>
+                                                        </a>
+                                                    </li>
+                                                </#if>
+
+                                                <#if article.preId != 0 && article.nextId != 0>
+                                                    <li class="next">
+                                                        <a href="${action}/${article.nextId}">
+                                                            <span style="color: #ec407a" class="pull-right">下一页 <i class="fa fa-long-arrow-right"></i></span>
+                                                        </a>
+                                                    </li>
+                                                </#if>
+                                                <#if article.preId == 0 && article.nextId != 0>
+                                                    <li class="next">
+                                                        <a href="${action}/${article.nextId}">
+                                                            <span style="color: #ec407a" class="pull-right">下一页 <i class="fa fa-long-arrow-right"></i></span>
+                                                        </a>
+                                                    </li>
+                                                </#if>
+
+                                            </ul>
+
                                         </div>
-                                    </div>
-                                    
-                    
-                                    
+                                    </#if>
+
+                                    <#if type == "1">
+                                        ${article.content}
+                                    </#if>
+
                                 </div>
                             </div>
                         </div>
@@ -145,21 +176,8 @@
                 <footer class="footer text-right">
                     <div class="container">
                         <div class="row">
-                            <div class="col-xs-6">
+                            <div class="col-xs-12" style="text-align: center">
                                 © litaono1.cn 2016 | 皖ICP备16001149号-1
-                            </div>
-                            <div class="col-xs-6">
-                                <ul class="pull-right list-inline m-b-0">
-                                    <li>
-                                        <a href="#">About</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Help</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Contact</a>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
                     </div>

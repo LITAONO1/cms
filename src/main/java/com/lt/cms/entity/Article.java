@@ -9,6 +9,10 @@ public class Article {
 
     private int categoryId;
 
+    private int preId;
+
+    private int nextId;
+
     private String name;
 
     private String summary;
@@ -73,5 +77,21 @@ public class Article {
 
     public void setCategoryUrl(String categoryUrl) {
         this.categoryUrl = categoryUrl;
+    }
+
+    public int getPreId() {
+        return preId;
+    }
+
+    public void setPreId(int preId) {
+        this.preId = preId;
+    }
+
+    public int getNextId() {
+        return nextId;
+    }
+
+    public void setNextId(int nextId) {
+        this.nextId = nextId;
     }
 }

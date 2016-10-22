@@ -22,7 +22,7 @@ public class CmsInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         List<Category> categoryList = (List<Category>) httpServletRequest.getSession().getAttribute("category");
         if(null == categoryList){
-            categoryList = categoryMapper.findCategories();
+            categoryList = categoryMapper.findTopCategories();
             httpServletRequest.getSession().setAttribute("categoryList", categoryList);
         }
         return true;

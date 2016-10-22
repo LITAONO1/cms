@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
-        <link rel="shortcut icon" href="blog/images/favicon_1.ico">
+        <link rel="shortcut icon" href="blog/images/favicon.ico">
         <title>狂魔穴窟</title>
         <link href="blog/plugins/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
         <link href="blog/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -13,6 +13,7 @@
         <link href="blog/css/pages.css" rel="stylesheet" type="text/css">
         <link href="blog/css/menu.css" rel="stylesheet" type="text/css">
         <link href="blog/css/responsive.css" rel="stylesheet" type="text/css">
+        <link href="blog/plugins/paging/paging.css" rel="stylesheet" type="text/css">
         <script src="blog/js/modernizr.min.js"></script>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,14 +32,14 @@
 
                     <!-- LOGO -->
                     <div class="topbar-left">
-                        <a href="index.html" class="logo"><i class="md md-terrain"></i> <span>狂魔穴窟</span></a>
+                        <a href="index.html" class="logo" style="margin-top: 0px; line-height: 60px;"> <span style="color: #ec407a">狂魔穴窟</span></a>
                     </div>
                     <!-- End Logo container-->
 
                     <div class="menu-extras">
                         <ul class="nav navbar-nav navbar-right pull-right">
                             <!-- 实际开发中登录和头像二者选择其一 -->
-                            <li> <a href="#" class="waves-effect waves-light">登录</a> </li>
+                            <#--<li> <a href="#" class="waves-effect waves-light">登录</a> </li>-->
                             <!-- <li class="dropdown user-box">
                                 <a href="" class="dropdown-toggle waves-effect waves-light profile " data-toggle="dropdown" aria-expanded="true">
                                     <img src="assets/images/users/avatar-1.jpg" alt="user-img" class="img-circle user-img">
@@ -74,12 +75,12 @@
                     <div id="navigation">
                         <ul class="navigation-menu">
                             <#list categoryList as category>
-                                <#if (category.url == action) >
+                                <#if (category.code == action) >
                                     <li class="active">
                                 <#else>
                                     <li>
                                 </#if>
-                                    <a href=" ${category.url} " class="waves-effect"><i class=" ${category.icon} "></i> <span> ${category.name} </span> </a>
+                                    <a href=" ${category.url}" class="waves-effect"><i class=" ${category.icon} "></i> <span> ${category.name} </span> </a>
                                 </li>
                             </#list>
                         </ul>
@@ -116,6 +117,9 @@
                                         </a>
                                     </#list>
 
+                                        <div class="inbox-item" id="pageTool"></div>
+
+
                                 </div>
                             </div>
                         </div>
@@ -127,21 +131,8 @@
                 <footer class="footer text-right">
                     <div class="container">
                         <div class="row">
-                            <div class="col-xs-6">
+                            <div class="col-xs-12" style="text-align: center">
                                 © litaono1.cn 2016 | 皖ICP备16001149号-1
-                            </div>
-                            <div class="col-xs-6">
-                                <ul class="pull-right list-inline m-b-0">
-                                    <li>
-                                        <a href="#">About</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Help</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Contact</a>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
                     </div>
@@ -169,5 +160,18 @@
         <script src="blog/plugins/counterup/jquery.counterup.min.js"></script>
         <!-- sweet alert  -->
         <script src="blog/plugins/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="blog/plugins/paging/query.js"></script>
+        <script src="blog/plugins/paging/paging.js"></script>
+        <script>
+            $('#pageTool').Paging({
+                pagesize: 10,
+                count: ${count},
+                current:${page},
+                hash:false,
+                callback: function(page,size,count){
+                    window.location.href="${action}?page="+page+"&pageSize="+size;
+                }
+            });
+        </script>
     </body>
 </html>

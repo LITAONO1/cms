@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
-        <link rel="shortcut icon" href="blog/images/favicon_1.ico">
+        <link rel="shortcut icon" href="blog/images/favicon.ico">
         <title>狂魔穴窟</title>
         <link href="blog/plugins/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
         <link href="blog/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -31,14 +31,14 @@
 
                     <!-- LOGO -->
                     <div class="topbar-left">
-                        <a href="index.html" class="logo"><i class="md md-terrain"></i> <span>狂魔穴窟</span></a>
+                        <a href="index.html" class="logo" style="margin-top: 0px; line-height: 60px;"> <span style="color: #ec407a">狂魔穴窟</span></a>
                     </div>
                     <!-- End Logo container-->
 
                     <div class="menu-extras">
                         <ul class="nav navbar-nav navbar-right pull-right">
                             <!-- 实际开发中登录和头像二者选择其一 -->
-                            <li> <a href="#" class="waves-effect waves-light">登录</a> </li>
+                            <#--<li> <a href="#" class="waves-effect waves-light">登录</a> </li>-->
                             <!-- <li class="dropdown user-box">
                                 <a href="" class="dropdown-toggle waves-effect waves-light profile " data-toggle="dropdown" aria-expanded="true">
                                     <img src="assets/images/users/avatar-1.jpg" alt="user-img" class="img-circle user-img">
@@ -74,12 +74,12 @@
                     <div id="navigation">
                         <ul class="navigation-menu">
                             <#list categoryList as category>
-                                <#if (category.url == action) >
+                                <#if (category.code == action) >
                                     <li class="active">
                                 <#else>
                                     <li>
                                 </#if>
-                                    <a href=" ${category.url} " class="waves-effect"><i class=" ${category.icon} "></i> <span> ${category.name} </span> </a>
+                                    <a href=" ${category.url}" class="waves-effect"><i class=" ${category.icon} "></i> <span> ${category.name} </span> </a>
                                 </li>
                             </#list>
                         </ul>
@@ -101,19 +101,18 @@
 
                 <div class="row">
 
-                    <#list categoryList as category>
-                        <#if category.url != "/blog/index" && category.url != "/blog/about" >
+                    <#list indexList as category>
                             <div class="col-lg-4">
                                 <div class="panel panel-border panel-inverse">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">${category.name}</h3>
+                                        <h3 class="panel-title" style="color: #ec407a">${category.name}</h3>
                                     </div>
                                     <div class="panel-body">
                                         <div class="inbox-widget">
 
                                             <#list articleList as article >
                                                 <#if category.id == article.categoryId >
-                                                    <a href=" ${article.categoryUrl}/${article.id} " target="_blank" class="waves-effect" style="display: block">
+                                                    <a href=" ${category.code}/${article.id} " target="_blank" class="waves-effect" style="display: block">
                                                         <div class="inbox-item" style="padding: 10px">
                                                             <p class="inbox-item-author"> ${article.name} </p>
                                                             <p class="inbox-item-text"> ${article.summary} </p>
@@ -127,7 +126,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </#if>
 
                     </#list>
 
@@ -138,21 +136,8 @@
                 <footer class="footer text-right">
                     <div class="container">
                         <div class="row">
-                            <div class="col-xs-6">
-                                2016 © Moltran.
-                            </div>
-                            <div class="col-xs-6">
-                                <ul class="pull-right list-inline m-b-0">
-                                    <li>
-                                        <a href="#">About</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Help</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Contact</a>
-                                    </li>
-                                </ul>
+                            <div class="col-xs-12" style="text-align: center">
+                                © litaono1.cn 2016 | 皖ICP备16001149号-1
                             </div>
                         </div>
                     </div>

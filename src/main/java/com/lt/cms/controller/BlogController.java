@@ -1,6 +1,5 @@
 package com.lt.cms.controller;
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.lt.cms.entity.Article;
 import com.lt.cms.entity.Category;
@@ -42,14 +41,14 @@ public class BlogController {
     public String index(HttpServletRequest request, Map<String, Object> map) {
         request.getSession().setAttribute("action", "index");
 
-        List<Category> categoryList = categoryMapper.findCategories();
+        List<Category> categoryList = categoryMapper.findIndexCategories();
         List<Article> articleList = new ArrayList<>();
-        for(Category category : categoryList){
+        for (Category category : categoryList) {
             PageHelper.startPage(0, 5);
             List<Article> articles = articleMapper.findArticles(category.getName());
             articleList.addAll(articles);
         }
-        map.put("categoryList", categoryList);
+        map.put("indexList", categoryList);
         map.put("articleList", articleList);
 
         return "blog/index";
@@ -57,24 +56,37 @@ public class BlogController {
 
     @RequestMapping(value = "/{category}", method = RequestMethod.GET)
     public String list(@PathVariable("category") String category, HttpServletRequest request,
-                       Map<String, Object> map) {
+                       Map<String, Object> map, String page, String pageSize) {
         request.getSession().setAttribute("action", category);
-
-        PageHelper.startPage(0, 5);
-        List<Article> articles = articleMapper.findArticles(category);
-        map.put("articles", articles);
-
-        return "blog/list";
+        Category ca = categoryMapper.findCategory(category);
+        if ("0".equals(ca.getType())) {
+            PageHelper.startPage(null==page?0:(Integer.parseInt(page)-1)*Integer.parseInt(pageSize), null==pageSize?0:Integer.parseInt(pageSize));
+            List<Article> articles = articleMapper.findArticles(category);
+            map.put("articles", articles);
+            int count = articleMapper.findArticleCount(category);
+            map.put("count", count);
+            map.put("page", page);
+            return "blog/list";
+        } else if ("1".equals(ca.getType())) {
+            Article article = articleMapper.findArticleByCategory(String.valueOf(ca.getId()));
+            map.put("article", article);
+            map.put("type", ca.getType());
+            return "blog/detail";
+        }
+        return null;
     }
 
     @RequestMapping(value = "/{category}/{id}", method = RequestMethod.GET)
     public String detail(@PathVariable("category") String category, @PathVariable("id") String id,
                          HttpServletRequest request, Map<String, Object> map) {
         request.getSession().setAttribute("action", category);
-
+        String preId = articleMapper.findPreArticle(id, category); // 上一篇ID
+        String nextId = articleMapper.findNextArticle(id, category);// 下一篇id
         Article article = articleMapper.findArticle(id);
+        article.setPreId(null == preId ? 0 : Integer.parseInt(preId));
+        article.setNextId(null == nextId ? 0 : Integer.parseInt(nextId));
         map.put("article", article);
-
+        map.put("type", "0");
         return "blog/detail";
     }
 
