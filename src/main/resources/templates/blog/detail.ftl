@@ -110,7 +110,7 @@
                                     <#if type == "0">
                                         <div style="text-align: center">
                                             <h1> ${article.name} </h1>
-                                            <span> ${article.createDate} </span>
+                                            <span> ${article.createDate?date} </span>
                                             <span> 嗜血狂魔 </span>
                                         </div>
 

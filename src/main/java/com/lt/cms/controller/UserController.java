@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by litao on 2016/10/20.
  */
@@ -25,7 +27,7 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Result login(String userName, String password) {
+    public Result login(String userName, String password, HttpServletRequest request) {
         User user = userMapper.findUser(userName);
         if (null == user) {
             return new Result(false, "用户不存在");
@@ -33,6 +35,7 @@ public class UserController {
         if (!user.getPassword().equals(password)) {
             return new Result(false, "用户名密码不正确");
         }
+        request.getSession().setAttribute("user", user);
         return new Result(true, "登录成功");
     }
 

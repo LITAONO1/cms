@@ -116,7 +116,7 @@
                                                         <div class="inbox-item" style="padding: 10px">
                                                             <p class="inbox-item-author"> ${article.name} </p>
                                                             <p class="inbox-item-text"> ${article.summary} </p>
-                                                            <p class="inbox-item-date">10:15 AM</p>
+                                                            <p class="inbox-item-date">${article.createDate?date}</p>
                                                         </div>
                                                     </a>
                                                 </#if>

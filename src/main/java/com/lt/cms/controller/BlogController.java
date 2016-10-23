@@ -32,6 +32,7 @@ public class BlogController {
     @Autowired
     ArticleMapper articleMapper;
 
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String main() {
         return "redirect:/index";
@@ -52,6 +53,16 @@ public class BlogController {
         map.put("articleList", articleList);
 
         return "blog/index";
+    }
+
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public String admin(){
+        return "blog/admin/login";
+    }
+
+    @RequestMapping(value = "/admin/index", method = RequestMethod.GET)
+    public String adminIndex(){
+        return "blog/admin/index";
     }
 
     @RequestMapping(value = "/{category}", method = RequestMethod.GET)
