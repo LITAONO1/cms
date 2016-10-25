@@ -118,8 +118,8 @@
                                             <span>摘要：${article.summary}</span>
                                         </div>
 
-                                        <div style="font-size: 16px;padding: 5px;">
-                                        ${article.content}
+                                        <div id="content" style="font-size: 16px;padding: 5px;">
+
                                         </div>
 
                                         <hr>
@@ -128,14 +128,14 @@
                                             <ul class="pager">
                                                 <#if article.preId != 0 && article.nextId != 0>
                                                     <li class="previous">
-                                                        <a href="${action}/${article.preId}">
+                                                        <a href="/blog/${action}/${article.preId}">
                                                             <span style="color: #ec407a"><i class="fa fa-long-arrow-left"></i> 上一页</span>
                                                         </a>
                                                     </li>
                                                 </#if>
                                                 <#if article.preId != 0 && article.nextId == 0>
                                                     <li class="previous">
-                                                        <a href="${action}/${article.preId}" >
+                                                        <a href="/blog/${action}/${article.preId}" >
                                                             <span style="color: #ec407a"><i class="fa fa-long-arrow-left"></i> 上一页</span>
                                                         </a>
                                                     </li>
@@ -143,14 +143,14 @@
 
                                                 <#if article.preId != 0 && article.nextId != 0>
                                                     <li class="next">
-                                                        <a href="${action}/${article.nextId}">
+                                                        <a href="/blog/${action}/${article.nextId}">
                                                             <span style="color: #ec407a" class="pull-right">下一页 <i class="fa fa-long-arrow-right"></i></span>
                                                         </a>
                                                     </li>
                                                 </#if>
                                                 <#if article.preId == 0 && article.nextId != 0>
                                                     <li class="next">
-                                                        <a href="${action}/${article.nextId}">
+                                                        <a href="/blog/${action}/${article.nextId}">
                                                             <span style="color: #ec407a" class="pull-right">下一页 <i class="fa fa-long-arrow-right"></i></span>
                                                         </a>
                                                     </li>
@@ -162,8 +162,12 @@
                                     </#if>
 
                                     <#if type == "1">
-                                        ${article.content}
+                                        <div id="content" style="font-size: 16px;padding: 5px;">
+
+                                        </div>
                                     </#if>
+
+                                    <input id="hiddenContent" type="hidden" value="${article.content}">
 
                                 </div>
                             </div>
@@ -187,7 +191,6 @@
             </div>
             <!-- end container -->
 
-
         </div>
 
         <!-- jQuery  -->
@@ -207,5 +210,11 @@
         <script src="/blog/blog/plugins/counterup/jquery.counterup.min.js"></script>
         <!-- sweet alert  -->
         <script src="/blog/blog/plugins/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="/blog/blog/plugins/markdown/markdown.min.js"></script>
+        <script>
+            var obj = $("#hiddenContent").val();
+            var html = markdown.toHTML(obj);
+            $("#content").html(html);
+        </script>
     </body>
 </html>
