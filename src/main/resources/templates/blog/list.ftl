@@ -32,7 +32,7 @@
 
                     <!-- LOGO -->
                     <div class="topbar-left">
-                        <a href="index.html" class="logo" style="margin-top: 0px; line-height: 60px;"> <span style="color: #ec407a">狂魔穴窟</span></a>
+                        <a href="index" class="logo" style="margin-top: 0px; line-height: 60px;"> <span style="color: #ec407a">狂魔穴窟</span></a>
                     </div>
                     <!-- End Logo container-->
 

@@ -1,9 +1,11 @@
 package com.lt.cms.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by litao on 2016/10/20.
  */
-public class Article {
+public class Article implements Serializable {
 
     private int id;
 

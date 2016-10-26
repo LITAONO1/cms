@@ -8,6 +8,8 @@ import com.lt.cms.mapper.CategoryMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +34,9 @@ public class BlogController {
     @Autowired
     ArticleMapper articleMapper;
 
+    @Autowired
+    RedisTemplate redisTemplate;
+
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String main() {
@@ -41,17 +46,23 @@ public class BlogController {
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index(HttpServletRequest request, Map<String, Object> map) {
         request.getSession().setAttribute("action", "index");
-
-        List<Category> categoryList = categoryMapper.findIndexCategories();
-        List<Article> articleList = new ArrayList<>();
-        for (Category category : categoryList) {
-            PageHelper.startPage(0, 5);
-            List<Article> articles = articleMapper.findArticles(category.getName());
-            articleList.addAll(articles);
+        List<Category> categoryList = (List<Category>) redisTemplate.opsForValue().get("categoryList");
+        if(null == categoryList){
+            categoryList = categoryMapper.findIndexCategories();
+            redisTemplate.opsForValue().set("categoryList", categoryList);
+        }
+        List<Article> articleList = (List<Article>) redisTemplate.opsForValue().get("articleList");
+        if(null == articleList){
+            articleList = new ArrayList<>();
+            for (Category category : categoryList) {
+                PageHelper.startPage(0, 5);
+                List<Article> articles = articleMapper.findArticles(category.getName());
+                articleList.addAll(articles);
+            }
+            redisTemplate.opsForValue().set("articleList", articleList);
         }
         map.put("indexList", categoryList);
         map.put("articleList", articleList);
-
         return "blog/index";
     }
 

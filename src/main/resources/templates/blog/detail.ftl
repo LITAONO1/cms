@@ -32,7 +32,7 @@
 
                     <!-- LOGO -->
                     <div class="topbar-left">
-                        <a href="index.html" class="logo" style="margin-top: 0px; line-height: 60px;">  <span style="color: #ec407a">狂魔穴窟</span></a>
+                        <a href="index" class="logo" style="margin-top: 0px; line-height: 60px;">  <span style="color: #ec407a">狂魔穴窟</span></a>
                     </div>
                     <!-- End Logo container-->
 
@@ -167,7 +167,7 @@
                                         </div>
                                     </#if>
 
-                                    <input id="hiddenContent" type="hidden" value="${article.content}">
+                                    <input id="hiddenContent" type="hidden" value='${article.content}'>
 
                                 </div>
                             </div>
@@ -210,10 +210,11 @@
         <script src="/blog/blog/plugins/counterup/jquery.counterup.min.js"></script>
         <!-- sweet alert  -->
         <script src="/blog/blog/plugins/sweetalert/dist/sweetalert.min.js"></script>
-        <script src="/blog/blog/plugins/markdown/markdown.min.js"></script>
+        <script src="/blog/blog/plugins/showdown/showdown.min.js"></script>
         <script>
             var obj = $("#hiddenContent").val();
-            var html = markdown.toHTML(obj);
+            var converter = new showdown.Converter();
+            var html = converter.makeHtml(obj);
             $("#content").html(html);
         </script>
     </body>

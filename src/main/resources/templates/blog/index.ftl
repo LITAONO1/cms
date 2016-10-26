@@ -31,7 +31,7 @@
 
                     <!-- LOGO -->
                     <div class="topbar-left">
-                        <a href="index.html" class="logo" style="margin-top: 0px; line-height: 60px;"> <span style="color: #ec407a">狂魔穴窟</span></a>
+                        <a href="index" class="logo" style="margin-top: 0px; line-height: 60px;"> <span style="color: #ec407a">狂魔穴窟</span></a>
                     </div>
                     <!-- End Logo container-->
 
@@ -114,7 +114,11 @@
                                                 <#if category.id == article.categoryId >
                                                     <a href=" ${category.code}/${article.id} " target="_blank" class="waves-effect" style="display: block">
                                                         <div class="inbox-item" style="padding: 10px">
-                                                            <p class="inbox-item-author"> ${article.name} </p>
+                                                            <#if article.name?length lt 20>
+                                                                <p class="inbox-item-author"> ${article.name}</p>
+                                                            <#else>
+                                                                <p class="inbox-item-author"> ${article.name[0..21]}...</p>
+                                                            </#if>
                                                             <#--<p class="inbox-item-text"> ${article.summary} </p>-->
                                                             <#--<p class="inbox-item-date">${article.createDate?date}</p>-->
                                                         </div>
